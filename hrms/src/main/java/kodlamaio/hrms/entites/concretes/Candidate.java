@@ -1,67 +1,48 @@
 package kodlamaio.hrms.entites.concretes;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import kodlamaio.hrms.core.entites.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@EqualsAndHashCode(callSuper = false)
+@Data
 @Entity
-@Table(name="candidates")
-public class Candidate extends User{
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "candidates")
+@PrimaryKeyJoinColumn(name = "id")
+public class Candidate extends User {
 
-	@Column(name="first_name")
+	@NotBlank
+	@NotNull
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@NotBlank
+	@NotNull
+	@Column(name = "last_name")
 	private String lastName;
-	
-	@Column(name="identity_number")
+
+	@NotBlank
+	@NotNull
+	@Column(name = "identity_number")
+	@Size(max = 11, min = 11, message = "11 karakter girmelisiniz!")
 	private String identityNumber;
+
 	
-	@Column(name="birth_date")
+	@Column(name = "birth_year")
 	private Date birthDate;
-	
-	public Candidate() {}
 
-	public Candidate(String firstName, String lastName, String identityNumber, Date birthDate) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.identityNumber = identityNumber;
-		this.birthDate = birthDate;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getIdentityNumber() {
-		return identityNumber;
-	}
-
-	public void setIdentityNumber(String identityNumber) {
-		this.identityNumber = identityNumber;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-	
 }

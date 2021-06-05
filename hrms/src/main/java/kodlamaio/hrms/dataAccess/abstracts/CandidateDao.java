@@ -1,9 +1,12 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import kodlamaio.hrms.entites.concretes.Candidate;
 
-public interface CandidateDao extends JpaRepository<Candidate,Integer>{
+@Repository
+public interface CandidateDao extends JpaRepository<Candidate, Integer> {
 
+	boolean existsByIdentityNumber(String identityNumber);
 }

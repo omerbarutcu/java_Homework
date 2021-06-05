@@ -3,51 +3,34 @@ package kodlamaio.hrms.entites.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import kodlamaio.hrms.core.entites.User;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@EqualsAndHashCode(callSuper = false)
+@Data
 @Entity
-@Table(name="employers")
-public class Employer extends User{
+@NoArgsConstructor
+@Table(name = "employers")
+public class Employer extends User {
 
-	@Column(name="company_name")
+	@NotBlank
+	@NotNull
+	@Column(name = "company_name")
 	private String companyName;
-	
-	@Column(name="web_address")
+
+	@NotBlank
+	@NotNull
+	@Column(name = "web_address")
 	private String webAddress;
-	
-	@Column(name="phone_number")
+
+	@NotBlank
+	@NotNull
+	@Column(name = "phone_number")
 	private String phoneNumber;
-	
-	public Employer() {}
 
-	public Employer(String companyName, String webAddress, String phoneNumber) {
-		super();
-		this.companyName = companyName;
-		this.webAddress = webAddress;
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public String getWebAddress() {
-		return webAddress;
-	}
-
-	public void setWebAddress(String webAddress) {
-		this.webAddress = webAddress;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	
 }

@@ -2,41 +2,35 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobTitleService;
-import kodlamaio.hrms.core.utilities.result.Result;
-import kodlamaio.hrms.core.utilities.result.SuccessResult;
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entites.concretes.JobTitle;
 
 @RestController
 @RequestMapping("api/jobtitles")
 public class JobTitlesController {
-	
-	private JobTitleService jobTitleService;
 
 	@Autowired
-	public JobTitlesController(JobTitleService jobTitleService) {
-		super();
-		this.jobTitleService = jobTitleService;
-	}
-	
+	private JobTitleService jobTitleService;
+
 	@GetMapping("/getall")
-	public List<JobTitle> getAll(){
+	public  DataResult<List<JobTitle>> getAll() {
 		return this.jobTitleService.getAll();
 	}
-	
-	@GetMapping("/getbyid/{id}")
-	public JobTitle getById(int id) {
-		return this.jobTitleService.getById(id);
+
+	@PostMapping("/add")
+	public ResponseEntity<?> add(@Valid @RequestBody JobTitle jobTitle) {
+		return ResponseEntity.ok(jobTitleService.add(jobTitle));
 	}
 
-	@GetMapping("/save")
-	public Result save(JobTitle jobTitle) {
-		this.jobTitleService.save(jobTitle);
-		return new SuccessResult("message");
-	}
 }

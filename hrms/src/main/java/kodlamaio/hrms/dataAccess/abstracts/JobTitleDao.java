@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import kodlamaio.hrms.entites.concretes.JobTitle;
 
-public interface JobTitleDao extends JpaRepository<JobTitle,Integer>{
-
+public interface JobTitleDao extends JpaRepository<JobTitle, Integer> {
+	boolean existsByTitle(String title);
 }
